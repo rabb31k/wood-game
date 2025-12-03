@@ -83,17 +83,25 @@
                 <h1 class="text-3xl md:text-4xl font-bold text-wood-900 mb-8 tracking-wide">木之眼力｜文字尋找</h1>
 
                 <div class="bg-wood-50 p-6 rounded-xl border border-wood-200 text-left mb-8">
-                    <h2 class="text-lg font-bold text-wood-800 mb-4 border-b border-wood-300 pb-2 flex items-center gap-2">
+                    <h2 class="text-lg font-bold text-wood-800 mb-2 border-b border-wood-300 pb-2 flex items-center gap-2">
                         <span>📜</span> 遊戲規則
                     </h2>
-                    <ul class="space-y-3 text-wood-800 leading-relaxed">
+                    <p class="text-wood-700 mb-4 font-bold">「肝主目，目主清明。」</p>
+                    <p class="text-sm text-wood-600 mb-4 leading-relaxed">
+                        木行對應臟腑為肝膽，而肝膽與眼睛的明亮與專注度有關。
+                    </p>
+                    <ul class="space-y-3 text-wood-800 leading-relaxed text-sm">
                         <li class="flex items-start gap-2">
-                            <span class="bg-wood-200 text-wood-800 rounded-full w-5 h-5 flex items-center justify-center text-xs mt-1 flex-shrink-0">1</span>
-                            <span>限時 <strong>30秒</strong>，找出所有「<span class="text-nature-dark font-bold text-lg mx-1">村</span>」字</span>
+                            <span class="font-bold text-nature-dark">①</span>
+                            <span>限時30秒，挑戰在「材」字中，找出隱藏的10個「<span class="text-nature-dark font-bold">村</span>」字</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <span class="bg-wood-200 text-wood-800 rounded-full w-5 h-5 flex items-center justify-center text-xs mt-1 flex-shrink-0">2</span>
+                            <span class="font-bold text-nature-dark">②</span>
                             <span>時間到後，依找到的數量計分</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="font-bold text-nature-dark">③</span>
+                            <span>點選正確會標示綠色，錯誤會標示紅色。</span>
                         </li>
                     </ul>
                 </div>
@@ -148,29 +156,56 @@
 
         <!-- 4. Result Modal -->
         <div id="modal-result" class="hidden-force fixed inset-0 z-50 flex items-center justify-center p-4 bg-wood-900/60 backdrop-blur-sm fade-in">
-            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden p-6 text-center">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden p-6 text-center relative">
+                <!-- Close X Button -->
+                <button onclick="ui.closeResult()" class="absolute top-4 right-4 text-wood-400 hover:text-wood-700 transition-colors p-2 rounded-full hover:bg-wood-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
                 <div class="text-6xl mb-4">🌳</div>
-                <div class="mb-6">
+                <div class="mb-4">
                     <p class="text-wood-600 mb-1">尋找結果</p>
                     <p class="text-2xl font-bold text-wood-900">
                         找到 <span id="res-count" class="text-nature-dark">0</span> / 10 個「村」
                     </p>
                 </div>
-                <div class="bg-wood-50 p-6 rounded-xl border-2 border-wood-200 mb-6">
+                <div class="bg-wood-50 p-4 rounded-xl border-2 border-wood-200 mb-4">
                     <h3 id="res-msg" class="text-xl font-bold text-nature-dark mb-2"></h3>
-                    <p id="res-submsg" class="text-wood-700 text-sm mb-4"></p>
+                    <p id="res-submsg" class="text-wood-700 text-sm mb-3"></p>
                     <div class="flex justify-center items-center gap-1 text-wood-400 text-sm font-bold bg-white py-2 rounded-lg border border-wood-100">
                         <span>得分：</span>
                         <span id="res-score" class="text-2xl text-wood-800">0</span>
                         <span>分</span>
                     </div>
                 </div>
+                
+                <!-- Scoring Table -->
+                <div class="text-left mb-6">
+                    <h4 class="text-sm font-bold text-wood-500 mb-2 border-b border-wood-100 pb-1">🏅 計分方式</h4>
+                    <div class="space-y-2 text-xs text-wood-700">
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold text-nature-dark w-24 flex-shrink-0">找到 6~10 個字</span>
+                            <span class="font-bold w-12 text-right">3分</span>
+                            <span class="text-right flex-1 text-wood-500">木氣舒展，目明心清</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold text-nature-dark w-24 flex-shrink-0">找到 3～5 個字</span>
+                            <span class="font-bold w-12 text-right">2分</span>
+                            <span class="text-right flex-1 text-wood-500">木氣不錯，專注有耐心</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold text-nature-dark w-24 flex-shrink-0">找到 0～2 個字</span>
+                            <span class="font-bold w-12 text-right">1分</span>
+                            <span class="text-right flex-1 text-wood-500">肝氣不足，需多調養</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flex flex-col gap-3">
                     <button onclick="game.startCountdown(); ui.closeResult();" class="w-full font-bold rounded-lg transition-all duration-200 shadow-sm active:scale-95 flex items-center justify-center gap-2 bg-nature-dark hover:bg-green-800 text-white shadow-green-200 px-6 py-2 text-base">
                         再來一次
-                    </button>
-                    <button onclick="ui.closeResult()" class="w-full font-bold rounded-lg transition-all duration-200 shadow-sm active:scale-95 flex items-center justify-center gap-2 border-2 border-wood-600 text-wood-800 hover:bg-wood-100 px-6 py-2 text-base">
-                        關閉視窗
                     </button>
                 </div>
             </div>
@@ -178,16 +213,24 @@
 
         <!-- 5. Rules Modal (In-Game) -->
         <div id="modal-rules" class="hidden-force fixed inset-0 z-50 flex items-center justify-center p-4 bg-wood-900/60 backdrop-blur-sm fade-in">
-            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden p-6">
-                <h3 class="text-xl font-bold text-center text-wood-800 mb-4">📜 遊戲規則</h3>
+            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden p-6 relative">
+                 <!-- Close X Button -->
+                <button onclick="ui.closeRules()" class="absolute top-4 right-4 text-wood-400 hover:text-wood-700 transition-colors p-2 rounded-full hover:bg-wood-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <h3 class="text-xl font-bold text-center text-wood-800 mb-4 border-b border-wood-100 pb-3">📜 遊戲規則</h3>
+                <p class="text-wood-700 mb-2 font-bold text-center">「肝主目，目主清明。」</p>
+                <p class="text-sm text-wood-600 mb-6 leading-relaxed text-center">
+                    木行對應臟腑為肝膽，而肝膽與眼睛的明亮與專注度有關。
+                </p>
                 <ul class="space-y-4 text-wood-800">
-                    <li class="flex gap-2"><span class="font-bold">1.</span><span>限時 <strong class="text-nature-dark">30秒</strong> 挑戰。</span></li>
-                    <li class="flex gap-2"><span class="font-bold">2.</span><span>在一堆「材」字中，找出所有的「<strong class="text-nature-dark">村</strong>」字。</span></li>
-                    <li class="flex gap-2"><span class="font-bold">3.</span><span>找到越多，評價越高！點錯會標示紅色，點對標示綠色。</span></li>
+                    <li class="flex gap-2 text-sm"><span class="font-bold text-nature-dark">①</span><span>限時30秒，挑戰在「材」字中，找出隱藏的10個「<span class="text-nature-dark font-bold">村</span>」字</span></li>
+                    <li class="flex gap-2 text-sm"><span class="font-bold text-nature-dark">②</span><span>時間到後，依找到的數量計分</span></li>
+                    <li class="flex gap-2 text-sm"><span class="font-bold text-nature-dark">③</span><span>點選正確會標示綠色，錯誤會標示紅色。</span></li>
                 </ul>
-                <div class="mt-6 flex justify-center">
-                    <button onclick="ui.closeRules()" class="px-6 py-2 bg-wood-200 hover:bg-wood-300 text-wood-800 rounded-lg transition-colors font-medium">關閉</button>
-                </div>
             </div>
         </div>
 
