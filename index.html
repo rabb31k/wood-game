@@ -187,17 +187,17 @@
                     <h4 class="text-base font-bold text-wood-500 mb-2 border-b border-wood-100 pb-1 tracking-wider">🏅 計分方式</h4>
                     <div class="space-y-2 text-sm text-wood-700 tracking-wide">
                         <div class="flex justify-between items-center whitespace-nowrap gap-2">
-                            <span class="font-bold text-nature-dark">找到 6~10 個字</span>
+                            <span class="font-bold text-nature-dark">找到 8~10 個字</span>
                             <span class="font-bold">3分</span>
-                            <span class="text-right flex-1 text-wood-500 overflow-hidden text-ellipsis">木氣舒展，目明心清</span>
+                            <span class="text-right flex-1 text-wood-500 overflow-hidden text-ellipsis">肝氣舒展，目明心清</span>
                         </div>
                         <div class="flex justify-between items-center whitespace-nowrap gap-2">
-                            <span class="font-bold text-nature-dark">找到 3～5 個字</span>
+                            <span class="font-bold text-nature-dark">找到 5～7 個字</span>
                             <span class="font-bold">2分</span>
-                            <span class="text-right flex-1 text-wood-500 overflow-hidden text-ellipsis">木氣不錯，專注有耐心</span>
+                            <span class="text-right flex-1 text-wood-500 overflow-hidden text-ellipsis">肝氣不錯，專注有耐心</span>
                         </div>
                         <div class="flex justify-between items-center whitespace-nowrap gap-2">
-                            <span class="font-bold text-nature-dark">找到 0～2 個字</span>
+                            <span class="font-bold text-nature-dark">找到 0～4 個字</span>
                             <span class="font-bold">1分</span>
                             <span class="text-right flex-1 text-wood-500 overflow-hidden text-ellipsis">肝氣不足，需多調養</span>
                         </div>
@@ -469,10 +469,10 @@
 
             calculateResult() {
                 const count = STATE.foundCount;
-                if (count >= 6) {
-                    return { score: 3, message: '木氣舒展，目明心清', subMessage: '太厲害了！你的觀察力非常敏銳。' };
-                } else if (count >= 3) {
-                    return { score: 2, message: '木氣不錯，專注有耐心', subMessage: '表現不錯！再接再厲。' };
+                if (count >= 8) {
+                    return { score: 3, message: '肝氣舒展，目明心清', subMessage: '太厲害了！你的觀察力非常敏銳。' };
+                } else if (count >= 5) {
+                    return { score: 2, message: '肝氣不錯，專注有耐心', subMessage: '表現不錯！再接再厲。' };
                 } else {
                     return { score: 1, message: '肝氣不足，需多調養', subMessage: '別氣餒，多讓眼睛休息一下再來挑戰！' };
                 }
